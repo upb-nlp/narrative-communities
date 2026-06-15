@@ -1,0 +1,145 @@
+
+-Scop-
+Având în vedere un document text potențial relevant pentru această activitate și o listă de tipuri de entități, identifică toate entitățile de acele tipuri din text și toate relațiile dintre entitățile identificate.
+
+-Pași-
+1. Identifică toate entitățile. Pentru fiecare entitate identificată, extrage următoarele informații:
+- entity_name: Numele entității, cu majuscule
+- entity_type: Unul dintre următoarele tipuri: [persoană, organizație, profesionist_medical, oficial_guvernamental, pacient, spital, sistem, comunitate, aplicare_lege, partid_politic, eveniment, infrastructură, tehnologie, resursă, comportament, gestionare_criză, testare, mască, ventilator, sprijin, anxietate, panică, încredere, corupție, sistem_sănătate, sănătate_publică, politică, restricție, călătorie, donație, protecție]
+- entity_description: Descriere cuprinzătoare a atributelor și activităților entității
+Formatează fiecare entitate astfel: ("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>)
+
+2. Din entitățile identificate la pasul 1, identifică toate perechile de (entitate_sursă, entitate_țintă) care sunt *clar legate* una de cealaltă.
+Pentru fiecare pereche de entități legate, extrage următoarele informații:
+- source_entity: numele entității sursă, așa cum a fost identificată la pasul 1
+- target_entity: numele entității țintă, așa cum a fost identificată la pasul 1
+- relationship_description: explicație despre motivul pentru care crezi că entitatea sursă și entitatea țintă sunt legate una de cealaltă
+- relationship_strength: un scor întreg între 1 și 10, indicând puterea relației între entitatea sursă și entitatea țintă
+Formatează fiecare relație astfel: ("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
+
+3. Returnează output-ul în limba română ca o singură listă de toate entitățile și relațiile identificate la pașii 1 și 2. Folosește **{record_delimiter}** ca delimitator de listă.
+
+4. Când ai terminat, afișează {completion_delimiter}.
+
+-Exemple-
+######################
+
+Exemplu 1:
+
+entity_types: [persoană, organizație, profesionist_medical, oficial_guvernamental, pacient, spital, sistem, comunitate, aplicare_lege, partid_politic, eveniment, infrastructură, tehnologie, resursă, comportament, gestionare_criză, testare, mască, ventilator, sprijin, anxietate, panică, încredere, corupție, sistem_sănătate, sănătate_publică, politică, restricție, călătorie, donație, protecție]
+text:
+Șefa DSP Suceava, demisă după ce a dezvăluit raportările false de coronavirus
+
+Șefa DSP Suceava a fost dată afară la doar câteva zile după ce a dezvăluit în presă, faptul că la Suceava s-au făcut raportări false în privința cazurilor de coronavirus.
+
+Medicul Manuela Trifan a dezvăluit că la Suceava s-au înregistrat atât de multe cazuri de Covid-19 pentru că raporta numărul de teste efectuate drept număr de îmbolnăviri.
+
+Marți, medicul a primit de la conducerea Ministerului Sănătății decizia de încetare a mandatului interimar pe care îl avea la DSP Suceava.
+
+"Am primit o hârtie din care reiese că de mâine trebuie să mă întorc la Iași. Aștept și ordinul de ministru și mă voi conforma cu mare bucurie", a declarat medicul Manuela Trifan.
+
+Întrebată dacă este posibil ca în realitate să se fi raportat numărul de teste cu rezultat pozitiv și nu numărul de persoane confirmate pozitiv cu noul coronavirus, șefa DSP Suceava, dr. Manuela Trifan, a răspuns că este foarte posibil.
+
+„Sunt cazuri cu nume și prenume, dar fără CNP, fără adresă, nu le putem aloca nici unei unități administrativ teritoriale, pur și simplu nu știm de unde sunt", a afirmat dr. Trifan.
+
+Șefa DSP încearcă să justifice „eroarea" invocând faptul că la începutul pandemiei, funcționarii DSP lucrau în ture de câte 4 ore la introducerea datelor în sistem, fiecare după propria metodă și pricepere.
+
+Este posibil ca fiecare să fi introdus rezultatele pozitive venite pe tura lui, fără să verifice dacă persoana respectivă este la primul test pozitiv sau dacă a fost un rezultat la o retestare.
+
+Prin urmare, în loc să fie raportată o persoană cu trei rezultate pozitive, în sistem apar trei cazuri pozitive.
+------------------------
+output:
+("entity"{tuple_delimiter}MANUELA TRIFAN{tuple_delimiter}profesionist_medical{tuple_delimiter}Dr. Manuela Trifan este un profesionist medical care a dezvăluit raportările false de coronavirus la Suceava)
+{record_delimiter}
+("entity"{tuple_delimiter}DSP SUCEAVA{tuple_delimiter}organizație{tuple_delimiter}DSP Suceava este direcția de sănătate publică care a experimentat raportări false de coronavirus)
+{record_delimiter}
+("entity"{tuple_delimiter}MINISTERUL SĂNĂTĂȚII{tuple_delimiter}oficial_guvernamental{tuple_delimiter}Ministerul Sănătății este ministerul care a decis încetarea mandatului interimar al Dr. Manuela Trifan la DSP Suceava)
+{record_delimiter}
+("entity"{tuple_delimiter}IAȘI{tuple_delimiter}comunitate{tuple_delimiter}Iași este orașul unde Dr. Manuela Trifan va reveni după încetarea mandatului)
+{record_delimiter}
+("entity"{tuple_delimiter}SUCEAVA{tuple_delimiter}comunitate{tuple_delimiter}Suceava este comunitatea unde s-au făcut raportări false de coronavirus)
+{record_delimiter}
+("entity"{tuple_delimiter}COVID-19{tuple_delimiter}eveniment{tuple_delimiter}COVID-19 este pandemia care a condus la raportări false la Suceava)
+{record_delimiter}
+("relationship"{tuple_delimiter}MANUELA TRIFAN{tuple_delimiter}DSP SUCEAVA{tuple_delimiter}Dr. Manuela Trifan a fost șefa DSP Suceava înainte de a fi demisă pentru dezvăluirea raportărilor false{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}MANUELA TRIFAN{tuple_delimiter}MINISTERUL SĂNĂTĂȚII{tuple_delimiter}Ministerul Sănătății a decis încetarea mandatului interimar al Dr. Manuela Trifan la DSP Suceava{tuple_delimiter}10)
+{record_delimiter}
+("relationship"{tuple_delimiter}MINISTERUL SĂNĂTĂȚII{tuple_delimiter}DSP SUCEAVA{tuple_delimiter}Ministerul Sănătății este implicat în procesul decizional privind DSP Suceava{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}SUCEAVA{tuple_delimiter}MANUELA TRIFAN{tuple_delimiter}Dr. Manuela Trifan a dezvăluit raportări false la Suceava{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}SUCEAVA{tuple_delimiter}COVID-19{tuple_delimiter}Raportările false din Suceava sunt legate de pandemia COVID-19{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}COVID-19{tuple_delimiter}SUCEAVA{tuple_delimiter}Pandemia COVID-19 a condus la raportări false la Suceava{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}DSP SUCEAVA{tuple_delimiter}COVID-19{tuple_delimiter}DSP Suceava a experimentat raportări false din cauza pandemiei COVID-19{tuple_delimiter}7)
+{record_delimiter}
+{completion_delimiter}
+#############################
+
+
+Exemplu 2:
+
+entity_types: [persoană, organizație, profesionist_medical, oficial_guvernamental, pacient, spital, sistem, comunitate, aplicare_lege, partid_politic, eveniment, infrastructură, tehnologie, resursă, comportament, gestionare_criză, testare, mască, ventilator, sprijin, anxietate, panică, încredere, corupție, sistem_sănătate, sănătate_publică, politică, restricție, călătorie, donație, protecție]
+text:
+Medic Din Suceava, Infectat Cu COVID-19, Acuzații La Adresa Lui Flutur
+
+Angajat al Spitalului Județean din Suceava, Anatol Burlacioc este unul dintre puținii doctori care s-au ridicat împotriva a ceea ce el numește "abuzurile unor oameni care au instaurat la spitalul din Suceava obiceiurile vânzătorilor ilegali de alcool".
+
+Aflat acasă sub tratament pentru COVID-19, "și eu și prietena mea suntem pozitivi, iar copiii nici nu i-am testat că nu avem unde", doctorul dezvăluie într-un interviu "întâmplări reale și abuzuri din spital".
+
+"Da, am mers alături de colega mea, ca s-o sprijin pentru că ajunsesem la limită", își motivează Anatol Burlacioc gestul. Eu mă luptam de ani de zile cu Rîmbu, încă de când l-a instalat Flutur.
+
+-Când ați sesizat aceste lucruri? -De la început. Rîmbu venea de la Garda Financiară Suceava. Fusese șef acolo.
+
+-Și ce s-a întâmplat în spital? -N-am cedat niciodată să atrag atenția asupra problemelor. Mi-au dat penalizări, au vrut să scape de mine. Dar am câștigat în instanță de fiecare dată.
+
+-Întrebam ce s-a întâmplat în general în spitalul din Suceava, cum de s-a ajuns aici? -Rîmbu nu dădea socoteală nimănui. Și Flutur și Rîmbu se comportau ca și cum nu erau responsabili în fața cuiva. Aici discutăm despre un sistem cu rădăcini mafiote.
+
+-Gheorghe Flutur e acum în spital. -Mdaaa. Flutur e în spital invocând că are COVID-19.
+------------------------
+output:
+("entity"{tuple_delimiter}ANATOL BURLACIOC{tuple_delimiter}profesionist_medical{tuple_delimiter}Anatol Burlacioc este un medic din Spitalul Județean din Suceava care s-a ridicat împotriva abuzurilor din spital și este infectat cu COVID-19)
+{record_delimiter}
+("entity"{tuple_delimiter}ANASTASIU RÎMBU{tuple_delimiter}oficial_guvernamental{tuple_delimiter}Anastasiu Rîmbu este un manager al spitalului din Suceava acuzat de abuzuri)
+{record_delimiter}
+("entity"{tuple_delimiter}GHEORGHE FLUTUR{tuple_delimiter}oficial_guvernamental{tuple_delimiter}Gheorghe Flutur este un oficial acuzat de abuzuri și se află în spital pentru COVID-19)
+{record_delimiter}
+("entity"{tuple_delimiter}SPITALUL JUDEȚEAN DIN SUCEAVA{tuple_delimiter}spital{tuple_delimiter}Spitalul Județean din Suceava este un spital public din Suceava, România, acuzat de abuzuri și corupție)
+{record_delimiter}
+("entity"{tuple_delimiter}GARDA FINANCIARĂ SUCEAVA{tuple_delimiter}aplicare_lege{tuple_delimiter}Garda Financiară Suceava este o instituție de poliție financiară din Suceava, România)
+{record_delimiter}
+("entity"{tuple_delimiter}PRIETENA LUI ANATOL BURLACIOC{tuple_delimiter}pacient{tuple_delimiter}Prietena lui Anatol Burlacioc este o persoană infectată cu COVID-19)
+{record_delimiter}
+("entity"{tuple_delimiter}COPIII LUI ANATOL BURLACIOC{tuple_delimiter}pacient{tuple_delimiter}Copiii lui Anatol Burlacioc sunt pacienți care nu au fost testați pentru COVID-19 din cauza lipsei de resurse)
+{record_delimiter}
+("entity"{tuple_delimiter}COVID-19{tuple_delimiter}eveniment{tuple_delimiter}COVID-19 este pandemia care a afectat Spitalul Județean din Suceava)
+{record_delimiter}
+("relationship"{tuple_delimiter}ANATOL BURLACIOC{tuple_delimiter}ANASTASIU RÎMBU{tuple_delimiter}Anatol Burlacioc a acuzat Anastasiu Rîmbu de abuzuri în spitalul din Suceava{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}ANATOL BURLACIOC{tuple_delimiter}GHEORGHE FLUTUR{tuple_delimiter}Anatol Burlacioc a acuzat Gheorghe Flutur de abuzuri în spitalul din Suceava{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}ANASTASIU RÎMBU{tuple_delimiter}GHEORGHE FLUTUR{tuple_delimiter}Anastasiu Rîmbu și Gheorghe Flutur au fost acuzați de abuzuri în spitalul din Suceava{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}ANATOL BURLACIOC{tuple_delimiter}SPITALUL JUDEȚEAN DIN SUCEAVA{tuple_delimiter}Anatol Burlacioc a acuzat spitalul din Suceava de abuzuri{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}ANASTASIU RÎMBU{tuple_delimiter}SPITALUL JUDEȚEAN DIN SUCEAVA{tuple_delimiter}Anastasiu Rîmbu a fost acuzat de abuzuri în spitalul din Suceava{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}GHEORGHE FLUTUR{tuple_delimiter}SPITALUL JUDEȚEAN DIN SUCEAVA{tuple_delimiter}Gheorghe Flutur a fost acuzat de abuzuri în spitalul din Suceava{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}ANATOL BURLACIOC{tuple_delimiter}COVID-19{tuple_delimiter}Anatol Burlacioc este infectat cu COVID-19{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}SPITALUL JUDEȚEAN DIN SUCEAVA{tuple_delimiter}COVID-19{tuple_delimiter}Spitalul Județean din Suceava a fost afectat de pandemia COVID-19{tuple_delimiter}8)
+{record_delimiter}
+{completion_delimiter}
+#############################
+
+
+
+-Date Reale-
+######################
+entity_types: [{entity_types}]
+text: {input_text}
+######################
+output:

@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Pipeline artifacts (never commit)
+artifacts/
+*.pkl
+summaries_cache.json
+prediction_results*.csv
+failed_predictions*.md
+
+# GraphRAG runtime
+**/lancedb/
+**/cache/
+
+# OS
+.DS_Store

@@ -1,0 +1,14 @@
+# GraphRAG settings template
+#
+# Generated at runtime by `narrative_map.indexing.config.create_settings_yaml`.
+# Copy or inspect after running:
+#
+#   uv run python -m narrative_map.indexing.server
+#
+# Environment overrides:
+#   LLM_API_BASE=http://localhost:8000/v1
+#   LLM_MODEL=Qwen/Qwen3.6-27B
+#   EMBEDDING_API_BASE=http://localhost:8001/v1
+#   EMBEDDING_MODEL=qwen3-embedding
+#
+# Prompts are read from the repo `prompts/` directory (absolute paths in generated YAML).
