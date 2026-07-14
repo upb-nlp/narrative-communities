@@ -2,7 +2,7 @@
 
 Data-Driven Communities for Fake News Prediction and Narrative Analysis
 
-This repository is the paper framework for a three-stage pipeline on Romanian fake news ([`upb-nlp/ro_fake_news`](https://huggingface.co/datasets/upb-nlp/ro_fake_news)):
+This repository is the framework for a three-stage pipeline on Romanian fake news ([`upb-nlp/ro_fake_news`](https://huggingface.co/datasets/upb-nlp/ro_fake_news)):
 
 1. **GraphRAG indexing** — build knowledge graphs and Leiden communities from news articles.
 2. **Narrative analysis** — regenerate community reports with DSPy; measure narrative purity (NMI, ARI, blending).
