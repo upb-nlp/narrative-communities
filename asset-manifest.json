@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/narrative-communities/static/js/main.305affa2.js",
+    "static/js/453.318c7ab1.chunk.js": "/narrative-communities/static/js/453.318c7ab1.chunk.js",
+    "index.html": "/narrative-communities/index.html",
+    "main.305affa2.js.map": "/narrative-communities/static/js/main.305affa2.js.map",
+    "453.318c7ab1.chunk.js.map": "/narrative-communities/static/js/453.318c7ab1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.305affa2.js"
+  ]
+}
